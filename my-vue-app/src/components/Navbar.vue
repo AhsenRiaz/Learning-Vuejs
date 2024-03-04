@@ -33,6 +33,20 @@ export default {
                 'bg-dark': this.useDarkNavbar
             }
         }
+    },
+    methods:{
+        storeThemeSetting(){
+            localStorage.setItem('theme', this.theme)
+        },
+
+        getThemeSetting(){
+            let theme = localStorage.getItem('theme')
+
+            if(theme){
+                this.theme = theme;
+            }
+        }
+
     }
 
 
