@@ -1,4 +1,6 @@
 <script setup>
+import { ref } from 'vue';
+import { provide } from 'vue';
 import Navbar from './components/Navbar.vue';
 import ReactiveComponent from './components/ReactiveComponent.vue';
 import ComputedProperties from './components/ComputedProperties.vue';
@@ -6,23 +8,31 @@ import ComponentProps from './components/ComponentProps.vue';
 import EmitComponent from './components/EmitComponent.vue';
 import EmptySlot from './components/slot/EmptySlot.vue';
 import FallbackSlot from './components/slot/FallbackSlot.vue';
+import InjectComponent from './components/InjectComponent.vue';
 import NamedSlot from './components/slot/NamedSlot.vue';
-// import CreatePage from './components/CreatePage.vue';
-import { ref } from 'vue';
-import { provide } from 'vue';
+import WatcherComponent from './components/WatcherComponent.vue';
+import RefComponent from './components/RefComponent.vue';
 
 const buttonColor = ref('red')
 
 const formHandler = (username, email, password) => {
-  console.log("username", email, password);
+  console.log("emitData", username, email, password);
 }
 
-provide("games", {
+provide("data", {
   name: "gta",
-  genre: ["adventure", "action"]
+  genre: ["adventure", "action"],
+  students: [
+    {
+      name: "alice",
+      course: "Python Programming"
+    },
+    {
+      name: "bob",
+      course: "Cyber Security"
+    }
+  ]
 })
-
-provide("books", ["SHerlock Holmes", "Dune"]);
 
 </script>
 
@@ -53,6 +63,10 @@ provide("books", ["SHerlock Holmes", "Dune"]);
       This content will go to slot two
     </template>
   </NamedSlot>
+
+  <InjectComponent />
+  <WatcherComponent />
+  <RefComponent/>
 
 
   <!-- <ComponentProps  /> -->
